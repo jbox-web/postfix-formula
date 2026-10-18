@@ -134,6 +134,8 @@ postfix-config-file-managed-{{ mapping }}:
     - group: {{ postfix.root_grp }}
     {%- if mapping.endswith('_sasl_password_maps') %}
     - mode: '0600'
+    {#- Credentials: never print them in a state diff. #}
+    - show_diff: False
     {%- else %}
     - mode: '0644'
     {%- endif %}
